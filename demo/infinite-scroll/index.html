@@ -23,7 +23,7 @@
     </div>
     <div id="posts">
     </div>
-    <div id="loader">
+    <div id="loading">
       <img src="loading.gif" />
     </div>
   </div>
@@ -45,12 +45,12 @@
 
         if(posts == maxPosts)
         {
-          $('#loader').unbind('appear', load);
-          $('#loader').text('No more data');
+          $('#loading').unbind('appear', load);
+          $('#loading').text('No more data');
         }
       }, 500);
     }
-    $('#loader').bind('appear', load);
+    $('#loading').bind('appear', load);
   </script>
 </body>
 </html>

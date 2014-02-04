@@ -41,6 +41,7 @@ body, html, h1, h2 {
 .avatar img {
   width: 50px;
   height: 50px;
+  border: 0;
 }
 
 .content {
@@ -62,9 +63,7 @@ body, html, h1, h2 {
   text-decoration: none;
 }
 
-
-
-#loader {
+#loading {
   text-align: center;
 }
 
