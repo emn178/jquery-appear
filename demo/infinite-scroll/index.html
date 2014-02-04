@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Infinite Scroll</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css">
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="../../src/jquery.appear.js"></script>
+</head>
+<body>
+  <div id="header">
+    <h1>Infinite Scroll</h1>
+  </div>
+  <div id="body">
+    <div id="description">
+      <p>
+        Content will be loaded when scrolling to end of page.
+      </p>
+      <p>
+        Scroll down to see the effect.
+      </p>
+    </div>
+    <div id="posts">
+    </div>
+    <div id="loader">
+      <img src="loading.gif" />
+    </div>
+  </div>
+  <div id="footer">
+    © 2014 jQuery-appear Demo
+  </div>
+  <script>
+    var maxPosts = 30;
+    var batchPosts = 10;
+
+    var posts = 0;
+    function load()
+    {
+      setTimeout(function() {
+        for(var i = 0;i < batchPosts && posts < maxPosts;++i, ++posts)
+        {
+          $('#posts').append('<div class="post"> <a class="avatar" href="#"> <img src="avatar.jpg"> </a> <div class="content"> <h5 class="username"> <a href="#">Username</a> </h5> <div class="message">This is message.</div> </div> </div>');
+        }
+
+        if(posts == maxPosts)
+        {
+          $('#loader').unbind('appear', load);
+          $('#loader').text('No more data');
+        }
+      }, 500);
+    }
+    $('#loader').bind('appear', load);
+  </script>
+</body>
+</html>
