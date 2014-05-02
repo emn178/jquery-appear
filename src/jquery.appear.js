@@ -1,5 +1,5 @@
 /*
- * jQuery-appear v0.1.0
+ * jQuery-appear v0.1.1
  * https://github.com/emn178/jquery-appear
  *
  * Copyright 2014, emn178@gmail.com
@@ -8,38 +8,43 @@
  * http://www.opensource.org/licenses/MIT
  */
 ;(function($, window, document, undefined) {
+  var KEY = 'jquery-appear';
+  var APPEAR_EVENT = 'appear';
+  var DISAPPEAR_EVENT = 'appear';
+  var SELECTOR = ':' + KEY;
+  var VISIBLE_KEY = KEY + '-visible';
+
   var origOn = $.fn.on;
   $.fn.on = function(events) {
     var evts = events.split(' ');
-    if($.inArray('appear', evts) != -1 || $.inArray('disappear', evts) != -1)
+    if($.inArray(APPEAR_EVENT, evts) != -1 || $.inArray(DISAPPEAR_EVENT, evts) != -1)
       initialize(this);
-    return origOn.apply(this, arguments);
+    return origOn.apply(this, arguments).each(test);
   };
 
-  $.expr[':']['jquery-appear'] = function(element) {
-    return $(element).data('jquery-appear');
+  $.expr[':'][KEY] = function(element) {
+    return !!$(element).data(KEY);
   };
 
   function initialize(element)
   {
-    if(element.data('jquery-appear'))
+    if(element.data(KEY))
       return;
-    element.data('jquery-appear', true);
-    element.data('lastVisible', false);
+    element.data(KEY, true).data(VISIBLE_KEY, false);
   }
 
   function test() 
   {
     var element = $(this);
-    var v = visible(this);
-    if(v != element.data('lastVisible'))
+    var v = element.is(':visible') && visible(this);
+    if(v != element.data(VISIBLE_KEY))
     {
       if(v)
-        element.trigger('appear');
+        element.trigger(APPEAR_EVENT);
       else
-        element.trigger('disappear');
+        element.trigger(DISAPPEAR_EVENT);
     }
-    element.data('lastVisible', v);
+    element.data(VISIBLE_KEY, v);
   }
 
   function visible(element) 
@@ -59,12 +64,11 @@
 
   function scroll()
   {
-    $(':jquery-appear').each(test);
+    $(SELECTOR).each(test);
   }
 
   $(document).ready(function() {
-    $(window).bind('resize', resize);
-    $(window).bind('scroll', scroll);
+    $(window).on('resize', resize).on('scroll', scroll);
     resize();
   });
 })(jQuery, window, document);
