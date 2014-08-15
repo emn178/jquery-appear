@@ -1,5 +1,5 @@
 /*
- * jQuery-appear v0.1.1
+ * jQuery-appear v0.1.2
  * https://github.com/emn178/jquery-appear
  *
  * Copyright 2014, emn178@gmail.com
@@ -10,7 +10,7 @@
 ;(function($, window, document, undefined) {
   var KEY = 'jquery-appear';
   var APPEAR_EVENT = 'appear';
-  var DISAPPEAR_EVENT = 'appear';
+  var DISAPPEAR_EVENT = 'disappear';
   var SELECTOR = ':' + KEY;
   var VISIBLE_KEY = KEY + '-visible';
 
