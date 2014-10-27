@@ -32,6 +32,19 @@
         Scroll down to see the effect.
       </p>
     </div>
+    <div id="code-block">
+      <h3>HTML</h3>
+      <pre class="brush: html">
+        &lt;div id=&quot;loading&quot;&gt;
+          &lt;img src=&quot;loading.gif&quot; /&gt;
+        &lt;/div&gt;
+      </pre>
+      <h3>JavaScript</h3>
+      <pre class="brush: js">
+        // load should be an AJAX function
+        $(&#39;#loading&#39;).bind(&#39;appear&#39;, load);
+      </pre>
+    </div>
     <div id="posts">
     </div>
     <div id="loading">
@@ -62,6 +75,14 @@
       }, 500);
     }
     $('#loading').bind('appear', load);
+  </script>
+  <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet">
+  <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet">
+  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
+  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js"></script>
+  <script>
+    SyntaxHighlighter.all();
   </script>
 </body>
 </html>

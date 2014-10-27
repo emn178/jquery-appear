@@ -91,11 +91,7 @@ body, html, h1, h2 {
   margin: 10px;
 }
 
-#code-block {
-  margin: 10px auto;
-  width: 80%;
-}
-
-#code-block h3 {
-  text-align: center;
+.sections {
+  height: 450px;
+  overflow: auto;
 }
