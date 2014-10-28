@@ -6,7 +6,7 @@ A jQuery plugin provides appear and disappear events to do lazyload, infinite sc
 [Uncompress](https://raw.github.com/emn178/jquery-appear/master/src/jquery.appear.js)
 
 ## Demo
-[Lazyload](http://emn178.github.io/jquery-appear/samples/lazyload/) (You could also refer to [jQuery-lazyload-any](http://github.io/emn178/jquery-lazyload-any/))  
+[Lazyload](http://emn178.github.io/jquery-appear/samples/lazyload/) ([Overflow and Tabs](http://emn178.github.io/jquery-lazyload-any/samples/overflow/)) (You could also refer to [jQuery-lazyload-any](http://github.io/emn178/jquery-lazyload-any/))  
 [Infinite Scroll](http://emn178.github.io/jquery-appear/samples/infinite-scroll/)  
 
 ## Browser Support
@@ -24,6 +24,24 @@ JavaScript
 $('#you-want-to-detect').bind('appear', appearHandler);
 $('#you-want-to-detect').bind('disappear', disappearHandler);
 ```
+
+### Methods
+
+#### $.appear.check()
+
+Force to trigger detection event.
+
+#### $.appear.setInterval(inverval)
+
+Set interval of timer that check container display status.
+
+##### *inverval: `Number` (default: `50`)*
+
+Interval of timer. Set 0 to disable timer, and you can use `$.appear.check()` to trigger detection manually.
+
+### Notice
+* You should initialize after the element add to page. Or it can't detect whether it's in screen. If you do that, you still can use `$.appear.check()` to force detection.
+* Detection uses jQuery `element.is(':visible')`, it will return false if element's width and height are equal to zero. So you have to make sure the appear element with any width or height.
 
 ## Example
 HTML
