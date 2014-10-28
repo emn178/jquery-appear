@@ -18,26 +18,6 @@
   var WATCH_SELECTOR = ':' + WATCH_KEY;
   var screenHeight, screenWidth, init = false, observations = $(), watchObservations = $();
 
-  var on = $.fn.on;
-  $.fn.on = function(events) {
-    var evts = events.split(' ');
-    on.apply(this, arguments);
-    if($.inArray(APPEAR_EVENT, evts) != -1 || $.inArray(DISAPPEAR_EVENT, evts) != -1) {
-      bind(this);
-    }
-    return this;
-  };
-
-  var off = $.fn.off;
-  $.fn.off = function(events) {
-    var evts = events.split(' ');
-    off.apply(this, arguments);
-    if(events == undefined || $.inArray(APPEAR_EVENT, evts) != -1 || $.inArray(DISAPPEAR_EVENT, evts) != -1) {
-      unbind(this);
-    }
-    return this;
-  };
-
   $.expr[':'][KEY] = function(element) {
     return $(element).data(KEY) !== undefined;
   };
@@ -131,17 +111,11 @@
     return true;
   }
 
-  function bind(elements) {
-    elements.each(function() {
-      var element = $(this);
-      if(element.is(SELECTOR)) {
-        return;
-      }
-      element.data(KEY, false);
-      element.parents().each(watch);
-      test.call(this);
-      observations = observations.add(this);
-    });
+  function bind(handleObj) {
+    var element = $(this);
+    if(element.is(SELECTOR)) {
+      return;
+    }
 
     if(!init) {
       init = true;
@@ -150,22 +124,34 @@
         $(window).on('resize', resize).on('scroll', detect);
       });
     }
+
+    element.data(KEY, false);
+    element.parents().each(watch);
+    setTimeout(function() {
+      test.call(element[0]);
+    }, 1);
+    observations = observations.add(this);
   }
 
-  function unbind(elements) {
-    elements.each(function() {
-      var element = $(this);
-      var events = $._data(this, 'events') || {};
+  function unbind(handleObj) {
+    var element = $(this);
+    setTimeout(function() {
+      var events = $._data(element[0], 'events') || {};
       if(!events[APPEAR_EVENT] && !events[DISAPPEAR_EVENT]) {
         element.removeData(KEY);
         watchObservations = watchObservations.filter(WATCH_SELECTOR)
         watchObservations.each(unwatch);
       }
-    });
+    }, 1);
   }
 
   $.appear = {
     check: detect
+  };
+
+  $.event.special.appear = $.event.special.disappear = {
+    add: bind,
+    remove: unbind
   };
 
   // SHOW EVENT
