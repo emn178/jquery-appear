@@ -25,3 +25,8 @@ html, body {
 .target {
   border: 1px solid black;
 }
+
+#container {
+  height: 500px;
+  overflow: auto;
+}

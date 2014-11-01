@@ -1,5 +1,5 @@
 /*
- * jQuery-appear v0.2.0
+ * jQuery-appear v0.2.1
  * https://github.com/emn178/jquery-appear
  *
  * Copyright 2014, emn178@gmail.com
@@ -145,8 +145,20 @@
     }, 1);
   }
 
+  function refresh(selector) {
+    var elements = selector === undefined ? observations : $(selector);
+    elements.each(function() {
+      var element = $(this);
+      if(!element.is(SELECTOR)) {
+        return;
+      }
+      element.parents().each(watch);
+    });
+  }
+
   $.appear = {
-    check: detect
+    check: detect,
+    refresh: refresh
   };
 
   $.event.special.appear = $.event.special.disappear = {

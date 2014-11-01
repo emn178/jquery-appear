@@ -1,3 +1,7 @@
+# v0.2.1 / 2014-11-01
+
+* Add refresh method for element move.
+
 # v0.2.0 / 2014-10-28
 
 * Enhance performance.
