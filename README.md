@@ -5,6 +5,12 @@ A jQuery plugin provides appear and disappear events to do lazyload, infinite sc
 [Compress](https://raw.github.com/emn178/jquery-appear/master/build/jquery.appear.min.js)  
 [Uncompress](https://raw.github.com/emn178/jquery-appear/master/src/jquery.appear.js)
 
+## Installation
+You can also install jquery-appear by using Bower.
+```
+bower install jquery-appear
+```
+
 ## Demo
 [Lazyload](http://emn178.github.io/jquery-appear/samples/lazyload/) ([Overflow and Tabs](http://emn178.github.io/jquery-appear/samples/overflow/)) (You could also refer to [jQuery-lazyload-any](http://github.io/emn178/jquery-lazyload-any/))  
 [Infinite Scroll](http://emn178.github.io/jquery-appear/samples/infinite-scroll/)  
