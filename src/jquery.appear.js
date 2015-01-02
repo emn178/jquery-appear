@@ -1,8 +1,8 @@
 /*
- * jQuery-appear v0.2.1
+ * jQuery-appear v0.2.2
  * https://github.com/emn178/jquery-appear
  *
- * Copyright 2014, emn178@gmail.com
+ * Copyright 2014-2015, emn178@gmail.com
  *
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
@@ -29,12 +29,10 @@
   function test() {
     var element = $(this);
     var v = element.is(':visible') && visible(this);
-    if(v != element.data(KEY))
-    {
+    if(v != element.data(KEY)) {
       if(v) {
         element.trigger(APPEAR_EVENT);
-      }
-      else {
+      } else {
         element.trigger(DISAPPEAR_EVENT);
       }
     }
@@ -79,7 +77,7 @@
     if(!element.data(WATCH_KEY)) {
       return;
     }
-    if(element.find(SELECTOR).length == 0) {
+    if(element.find(SELECTOR).length === 0) {
       element.removeData(SCROLLER_KEY).removeData(DISPLAY_KEY).removeData(WATCH_KEY);
       element.unbind('scroll', detect)._unbindShow(detect);
     }
@@ -139,7 +137,7 @@
       var events = $._data(element[0], 'events') || {};
       if(!events[APPEAR_EVENT] && !events[DISAPPEAR_EVENT]) {
         element.removeData(KEY);
-        watchObservations = watchObservations.filter(WATCH_SELECTOR)
+        watchObservations = watchObservations.filter(WATCH_SELECTOR);
         watchObservations.each(unwatch);
       }
     }, 1);
@@ -177,14 +175,6 @@
       return $(element).data(SELECTOR_KEY) !== undefined;
     };
 
-    function detect() {
-      observations = observations.filter(SELECTOR);
-      observations.each(test);
-      if(observations.length == 0) {
-        timer = clearInterval(timer);
-      }
-    }
-
     function test() {
       var element = $(this);
       var status = element.css('display') != 'none';
@@ -193,6 +183,14 @@
         if(status) {
           element.trigger(EVENT);
         }
+      }
+    }
+
+    function detect() {
+      observations = observations.filter(SELECTOR);
+      observations.each(test);
+      if(observations.length === 0) {
+        timer = clearInterval(timer);
       }
     }
 

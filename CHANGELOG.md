@@ -1,3 +1,8 @@
+# v0.2.2 / 2015-01-02
+
+* Add bower package.
+* Fixed JSHint warnings.
+
 # v0.2.1 / 2014-11-01
 
 * Add refresh method for element move.
