@@ -1,3 +1,7 @@
+# v0.2.3 / 2015-07-05
+
+* Add appearing event.
+
 # v0.2.2 / 2015-01-02
 
 * Add bower package.

@@ -27,8 +27,12 @@ HTML
 ```
 JavaScript
 ```JavaScript
+// trigger when first appear or disappear
 $('#you-want-to-detect').bind('appear', appearHandler);
 $('#you-want-to-detect').bind('disappear', disappearHandler);
+
+// trigger when scrolling and visible in screen
+$('#you-want-to-detect').bind('appearing', appearingHandler);
 ```
 
 ### Methods

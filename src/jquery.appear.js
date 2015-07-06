@@ -1,5 +1,5 @@
 /*
- * jQuery-appear v0.2.2
+ * jQuery-appear v0.2.3
  * https://github.com/emn178/jquery-appear
  *
  * Copyright 2014-2015, emn178@gmail.com
@@ -10,7 +10,9 @@
 ;(function($, window, document, undefined) {
   var KEY = 'jquery-appear';
   var APPEAR_EVENT = 'appear';
+  var APPEARING_EVENT = 'appearing';
   var DISAPPEAR_EVENT = 'disappear';
+  var EVENTS = [APPEAR_EVENT, APPEARING_EVENT, DISAPPEAR_EVENT];
   var SELECTOR = ':' + KEY;
   var SCROLLER_KEY = KEY + '-scroller';
   var DISPLAY_KEY = KEY + '-display';
@@ -29,13 +31,15 @@
   function test() {
     var element = $(this);
     var v = element.is(':visible') && visible(this);
-    if(v != element.data(KEY)) {
-      if(v) {
+    if(v) {
+      element.trigger(APPEARING_EVENT);
+      if(v != element.data(KEY)) {
         element.trigger(APPEAR_EVENT);
-      } else {
-        element.trigger(DISAPPEAR_EVENT);
       }
+    } else if(v != element.data(KEY)) {
+      element.trigger(DISAPPEAR_EVENT);
     }
+    
     element.data(KEY, v);
   }
 
@@ -135,7 +139,14 @@
     var element = $(this);
     setTimeout(function() {
       var events = $._data(element[0], 'events') || {};
-      if(!events[APPEAR_EVENT] && !events[DISAPPEAR_EVENT]) {
+      var result = false;
+      for(var i = 0;i < EVENTS.length;++i) {
+        if(events[EVENTS[i]]) {
+          result = true;
+          break;
+        }
+      }
+      if(result) {
         element.removeData(KEY);
         watchObservations = watchObservations.filter(WATCH_SELECTOR);
         watchObservations.each(unwatch);
@@ -159,10 +170,12 @@
     refresh: refresh
   };
 
-  $.event.special.appear = $.event.special.disappear = {
-    add: bind,
-    remove: unbind
-  };
+  for(var i = 0;i < EVENTS.length;++i) {
+    $.event.special[EVENTS[i]] = {
+      add: bind,
+      remove: unbind
+    };
+  }
 
   // SHOW EVENT
   (function() {
