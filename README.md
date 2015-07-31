@@ -57,6 +57,14 @@ Refresh status of elements bound event. Element will bind scroll event to parent
 
 The elements that you want to refresh. It will refresh all elements bound appear event if you don't pass this parameter.
 
+#### $.appear.setEventPrefix(prefix)
+
+You can set prefix to avoid event conflict.
+
+##### *prefix: `String`*
+
+The prefix that you want to set. It will apply to new event bindings. You should define it at first.
+
 ### Notice
 * You should initialize after the element add to page. Or it can't detect whether it's in screen. If you do that, you still can use `$.appear.check()` to force detection.
 * Detection uses jQuery `element.is(':visible')`, it will return false if element's width and height are equal to zero. So you have to make sure the appear element with any width or height.

@@ -1,5 +1,5 @@
 /*
- * jQuery-appear v0.2.3
+ * jQuery-appear v0.2.4
  * https://github.com/emn178/jquery-appear
  *
  * Copyright 2014-2015, emn178@gmail.com
@@ -165,21 +165,37 @@
     });
   }
 
+  function createEvents() {
+    for(var i = 0;i < EVENTS.length;++i) {
+      $.event.special[EVENTS[i]] = {
+        add: bind,
+        remove: unbind
+      };
+    }
+  }
+
+  function setEventPrefix(prefix) {
+    for(var i = 0;i < EVENTS.length;++i) {
+      delete $.event.special[EVENTS[i]];
+    }
+    APPEAR_EVENT = prefix + 'appear';
+    APPEARING_EVENT = prefix + 'appearing';
+    DISAPPEAR_EVENT = prefix + 'disappear';
+    EVENTS = [APPEAR_EVENT, APPEARING_EVENT, DISAPPEAR_EVENT];
+    createEvents();
+  }
+
   $.appear = {
     check: detect,
-    refresh: refresh
+    refresh: refresh,
+    setEventPrefix: setEventPrefix
   };
 
-  for(var i = 0;i < EVENTS.length;++i) {
-    $.event.special[EVENTS[i]] = {
-      add: bind,
-      remove: unbind
-    };
-  }
+  createEvents();
 
   // SHOW EVENT
   (function() {
-    var EVENT = 'show';
+    var EVENT = 'jquery-appear-show';
     var SELECTOR_KEY = KEY + '-' + EVENT;
     var SELECTOR = ':' + SELECTOR_KEY;
     var interval = 50, timer, observations = $();

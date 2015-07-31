@@ -1,6 +1,6 @@
 {
   "name": "jquery-appear",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": ["src/jquery.appear.js"],
   "ignore": [
     "samples",

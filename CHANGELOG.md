@@ -1,3 +1,7 @@
+# v0.2.4 / 2015-07-31
+
+* Add event prefix feature.
+
 # v0.2.3 / 2015-07-05
 
 * Add appearing event.
