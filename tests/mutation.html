@@ -9,6 +9,8 @@
 </head>
 <body>
   <div id="message"></div>
+  <button id="height">Toggle Height</button>
+  <button id="display">Toggle Display</button>
   <div class="box1"></div>
   <span class="target">Target</span>
   <div class="box1"></div>
@@ -18,6 +20,12 @@
   });
   $('.target').bind('disappear', function() {
     $('#message').text('Element disappears');
+  });
+  $('#height').click(function () {
+    $('.box1').toggle();
+  });
+  $('#display').click(function () {
+    $('.target').toggle();
   });
   </script>
 </body>

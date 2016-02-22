@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Infinite Scroll</title>
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css">
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="../../src/jquery.appear.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="http://emn178.github.io/js-throttle-debounce/src/js-throttle-debounce.js"></script>
+  <script type="text/javascript" src="../../src/jquery.appear.js"></script>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    if (location.protocol != 'file:') {
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-44208259-3', 'auto');
-    ga('send', 'pageview');
-
+      ga('create', 'UA-44208259-3', 'auto');
+      ga('send', 'pageview');
+    }
   </script>
 </head>
 <body>
@@ -53,37 +54,31 @@
     </div>
   </div>
   <div id="footer">
-    © 2014-2015 jQuery-appear Demo
+    © 2014-2016 jQuery-appear Demo
   </div>
   <script>
     var maxPosts = 30;
-    var batchPosts = 10;
-
+    var batchPosts = 5;
     var posts = 0;
-    var load = function()
-    {
-      setTimeout(function() {
-        for(var i = 0;i < batchPosts && posts < maxPosts;++i, ++posts)
-        {
+    var load = function () {
+      setTimeout(function () {
+        for (var i = 0;i < batchPosts && posts < maxPosts;++i, ++posts) {
           $('#posts').append('<div class="post"> <a class="avatar" href="#"> <img src="avatar.jpg"> </a> <div class="content"> <h5 class="username"> <a href="#">Username</a> </h5> <div class="message">This is message.</div> </div> </div>');
         }
 
-        if(posts == maxPosts)
-        {
+        if (posts == maxPosts) {
           $('#loading').unbind('appearing', load);
           $('#loading').text('No more data');
-        } else {
-          $.appear.check();
         }
       }, 500);
     }.throttle();
     $('#loading').bind('appearing', load);
   </script>
-  <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet">
-  <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet">
-  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
-  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
-  <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeDefault.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushXml.js"></script>
   <script>
     SyntaxHighlighter.all();
   </script>

@@ -1,6 +1,10 @@
 # jQuery-appear
 A jQuery plugin provides appear and disappear events to do lazyload, infinite scroll or else effect.
 
+## Demo
+[Lazyload](http://emn178.github.io/jquery-appear/samples/lazyload/) ([Overflow and Tabs](http://emn178.github.io/jquery-appear/samples/overflow/)) (You could also refer to [jQuery-lazyload-any](http://github.io/emn178/jquery-lazyload-any/))  
+[Infinite Scroll](http://emn178.github.io/jquery-appear/samples/infinite-scroll/)  
+
 ## Download
 [Compress](https://raw.github.com/emn178/jquery-appear/master/build/jquery.appear.min.js)  
 [Uncompress](https://raw.github.com/emn178/jquery-appear/master/src/jquery.appear.js)
@@ -10,13 +14,6 @@ You can also install jquery-appear by using Bower.
 ```
 bower install jquery-appear
 ```
-
-## Demo
-[Lazyload](http://emn178.github.io/jquery-appear/samples/lazyload/) ([Overflow and Tabs](http://emn178.github.io/jquery-appear/samples/overflow/)) (You could also refer to [jQuery-lazyload-any](http://github.io/emn178/jquery-lazyload-any/))  
-[Infinite Scroll](http://emn178.github.io/jquery-appear/samples/infinite-scroll/)  
-
-## Browser Support
-jQuery-appear currently supports IE7+, Chrome, Firefox, Safari and Opera.
 
 ## Usage
 You could just use jQuery `bind`, `delegate` or `on` to listen event.
@@ -86,4 +83,4 @@ The project is released under the [MIT license](http://www.opensource.org/licens
 
 ## Contact
 The project's website is located at https://github.com/emn178/jquery-appear  
-Author: emn178@gmail.com
+Author: Yi-Cyuan Chen (emn178@gmail.com)
