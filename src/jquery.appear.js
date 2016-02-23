@@ -1,7 +1,7 @@
 /**
  * [jQuery-appear]{@link https://github.com/emn178/jquery-appear}
  *
- * @version 0.2.5
+ * @version 0.2.6
  * @author Yi-Cyuan Chen [emn178@gmail.com]
  * @copyright Yi-Cyuan Chen 2014-2016
  * @license MIT
@@ -18,6 +18,8 @@
   var WATCH_KEY = KEY + '-watch';
   var WATCH_SELECTOR = ':' + WATCH_KEY;
   var MUTATION = window.MutationObserver !== undefined;
+  var animationend = 'animationend webkitAnimationEnd oAnimationEnd';
+  var transitionend = 'transitionend webkitTransitionEnd oTransitionEnd';
   var screenHeight, screenWidth, init = false, observations = $(), watchObservations = $();
 
   $.expr[':'][KEY] = function (element) {
@@ -56,7 +58,6 @@
     var v = element.is(':visible') && visible(this);
     if (v) {
       element.trigger(APPEARING_EVENT);
-      console.log(v, element.data(KEY));
       if (v != element.data(KEY)) {
         element.trigger(APPEAR_EVENT);
       }
@@ -148,6 +149,7 @@
       resize();
       $(document).ready(function () {
         $(window).on('resize', resize).on('scroll', detect);
+        $(document.body).on(animationend + ' ' + transitionend, detect);
       });
 
       if (MUTATION) {

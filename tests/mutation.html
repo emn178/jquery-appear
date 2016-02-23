@@ -10,10 +10,11 @@
 <body>
   <div id="message"></div>
   <button id="height">Toggle Height</button>
+  <button id="height_animation">Toggle Height(Animation)</button>
   <button id="display">Toggle Display</button>
-  <div class="box1"></div>
+  <div class="box1 transition"></div>
   <span class="target">Target</span>
-  <div class="box1"></div>
+  <div class="box1 transition"></div>
   <script>
   $('.target').bind('appear', function() {
     $('#message').text('Element appears');
@@ -23,6 +24,9 @@
   });
   $('#height').click(function () {
     $('.box1').toggle();
+  });
+  $('#height_animation').click(function () {
+    $('.box1').toggleClass('collapse');
   });
   $('#display').click(function () {
     $('.target').toggle();

@@ -1,3 +1,7 @@
+# v0.2.6 / 2016-02-23
+
+* Added animationend and transitionend detection.
+
 # v0.2.5 / 2016-02-22
 
 * Added mutation observer feature.
